@@ -1,13 +1,26 @@
-<h3>TO DO</h3>
 
-<form method="POST" action="/">
-    {% csrf_token %}
-    {{form.title}}
-    <input type="submit" name='Create Task'>
-</form>
+<div class="center-colum">
+    <form method="POST" action="/">
+        {% csrf_token %}
+        {{form.title}}
+        <input type="submit" name='Create Task'>
+    </form>
+    <div class="todo_list">
+    {% for task in tasks %}
+        <div lass="item-row">
+            <a href="{% url 'update_task' task.id %}">Update</a>
+            <a href="{% url 'delete' task.id %}">Delete</a>
 
-{% for task in tasks %}
-    <div>
-        <p>{{task}}</p>
+            {% if task.complete == True %}
+                <strike>
+                    {{task}}
+                </strike>
+            {% else %}
+                <span>
+                    {{task}}
+                </span>  
+            {% endif %}      
+        </div>
+    {% endfor %}
     </div>
-{% endfor %}
+</div>
