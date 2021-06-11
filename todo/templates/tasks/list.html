@@ -1,15 +1,78 @@
+<style>
+    body{
+        background-color: #DA67AC;
 
-<div class="center-colum">
+    }
+    a {
+        text-decoration: none;
+    }
+    input{
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+	}
+
+	input::placeholder {
+	  color: #d3d3d3;
+	}
+	.loginout {
+		float: right;
+		padding-right: 5px;
+	}
+
+	.submit{
+		background-color: #6BA3E8;
+		border-style: none;
+		border-radius: 4px;
+		color: #fff;
+		font-size: 20px;
+
+	}
+	
+	.center-column{
+		width:600px;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+
+	.item-row{
+		background-color: #906abd;
+		margin: 10px;
+		padding: 20px;
+		border-radius: 3px;
+		color: #fff;
+		font-size: 20px;
+		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+	}
+
+	.btn-danger{
+		background-color: #ffae19;
+		border-color: #e59400;
+		border-radius: 3px;
+		padding: 2px;
+	}
+</style>
+
+<div class="center-column">	
+		<h3 >To Do List</h3>
+		<div class="loginout">
+			<a class ="login" href="{% url 'login' %}">Login</a>
+			<a class ="login" href="{% url 'logout' %}">Logout</a>	
+		</div>
     <form method="POST" action="/">
         {% csrf_token %}
         {{form.title}}
-        <input type="submit" name='Create Task'>
+        <input class="submit" type="submit" name='Create Task' >
     </form>
     <div class="todo_list">
     {% for task in tasks %}
-        <div lass="item-row">
-            <a href="{% url 'update_task' task.id %}">Update</a>
-            <a href="{% url 'delete' task.id %}">Delete</a>
+        <div class="item-row">
+            <a class="btn-danger" href="{% url 'update_task' task.id %}">Update</a>
+            <a class="btn-danger" href="{% url 'delete' task.id %}">Delete</a>
 
             {% if task.complete == True %}
                 <strike>

@@ -2,9 +2,12 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import *
 from .forms import *
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 
+@login_required
 def index(request):
     tasks = Task.objects.all()
     form = TaskForm()
